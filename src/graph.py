@@ -53,3 +53,9 @@ class Graph:
                     edge.destination.color = random_color
                 queue.pop(0) 
         return found
+
+    def get_connected_components(self):
+        searched = []
+        for vertex in self.vertexes:
+            if vertex not in searched:
+                searched = searched + (self.bfs(vertex))
