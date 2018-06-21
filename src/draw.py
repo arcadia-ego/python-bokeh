@@ -12,7 +12,8 @@ CIRCLE_SIZE = 30
 
 graph_data = Graph()
 graph_data.debug_create_test_data()
-graph_data.get_connected_components()
+graph_data.bfs(graph_data.vertexes[0])
+# graph_data.get_connected_components()
 
 print("graph vertexes",graph_data.vertexes)
 N = len(graph_data.vertexes)
