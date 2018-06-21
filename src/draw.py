@@ -8,9 +8,9 @@ from graph import *
 
 graph_data = Graph()
 graph_data.debug_create_test_data()
-print(graph_data)
-
+print("graph vertexes",graph_data.vertexes)
 N = len(graph_data.vertexes)
+print("N", [0]*N)
 
 node_indices = list(range(N))
 print("node indices", node_indices)
@@ -29,10 +29,16 @@ graph.node_renderer.data_source.add(color_list, 'color')
 graph.node_renderer.glyph = Oval(height=10, width=10, fill_color='color')
 
 # HINT: DRAWING EDGES FORM START TO END
+start_indexes = []
+end_indexes = []
+for start_index, vertex in enumerate(graph_data.vertexes):
+    for e in vertex.edges:
+        start_indexes.append(start_index)
+        end_indexes.append(graph_data.vertexes.index(e.destination))
 
 graph.edge_renderer.data_source.data = dict(
-    start=[0]*N, # list has to do with starting points
-    end=node_indices) #list that has to do with ending points
+    start=start_indexes, # list has to do with starting points: goes from [0,0,0] -> [0,1,2]; want [x,x,x] -> [y,y,y]
+    end=end_indexes) #list that has to do with ending points
 
 ### start of layout code
 x = [v.pos['x'] for v in graph_data.vertexes]
